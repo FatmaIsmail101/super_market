@@ -18,7 +18,8 @@ class CategoriesList extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 16,
             crossAxisSpacing: 16,
-            childAspectRatio: 1.3,
+            //سبب ل over flow
+            childAspectRatio: 1.4,
           ),
           itemBuilder: (context, index) {
             return CategoryWidget(category: categories[index]);

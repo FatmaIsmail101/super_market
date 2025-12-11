@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:route_e_commerce_v2/core/routing/routes.dart';
-import 'package:route_e_commerce_v2/features/auth/login/view/login.dart';
+import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/screens/sign_up_screen.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/navigation_view.dart';
+
+import '../../features/auth/login/presentation/view/login.dart';
 
 abstract class AppRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -10,9 +12,14 @@ abstract class AppRouter {
       print('Navigating to: ${settings.name}');
     }
 
-    final uri = Uri.parse(settings.name ?? '/');
+    //final uri = Uri.parse(settings.name ?? '/');
 
-    switch (uri.path) {
+    switch (settings.name) {
+      case Routes.signUpRoute:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>   SignUpScreen(),
+        );
       case Routes.navigationRoute:
         return MaterialPageRoute(
           settings: settings,
@@ -23,6 +30,8 @@ abstract class AppRouter {
           settings: settings,
           builder: (_) =>  Login(),
         );
+
+
       default:
         return MaterialPageRoute(
           settings: settings,
