@@ -17,7 +17,7 @@ class SignUpRepositoryImpl implements SignUpRepository{
     try{
       var result=await signUpDS.signUp(request);
       CacheHelper.saveString("token", result.token??"");
-
+      CacheHelper.saveString("email", result.user?.email??"");
       return Right(result);
     }
     catch(e){

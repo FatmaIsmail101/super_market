@@ -27,6 +27,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final res=CacheHelper.getString("token");
+
     return MaterialApp(
       title: "Route E-Commerce",
       themeMode: ThemeMode.light,
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
       locale: const Locale("en"),
       theme: AppTheme.getLightThemeData(),
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: Routes.loginRoute,
+      initialRoute:Routes.loginRoute,
+      //res==null? :Routes.navigationRoute
     );
   }
 }

@@ -17,6 +17,9 @@ class LoginRepositroyImpl implements LoginRepository{
     try{
       var result=await loginDataSource.login(request);
       CacheHelper.saveString("token", result.token??"");
+      CacheHelper.saveString("email", result.user?.email??"");
+
+
       return Right(result);
     }
     catch(e){
