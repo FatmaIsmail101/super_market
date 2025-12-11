@@ -23,7 +23,8 @@ dependencies:
   google_fonts: ^6.3.3
   dots_indicator: ^4.0.1
   cached_network_image: ^3.4.1
-  retrofit: ^4.9.1
+  retrofit: ^4.0.1
+
 
   logger: ^2.6.2
   json_annotation: ^4.9.0
@@ -38,10 +39,16 @@ dev_dependencies:
 
 
   flutter_lints: ^6.0.0
-  retrofit_generator: ^10.2.0
-  injectable_generator: ^2.11.1
-  build_runner: ^2.10.4
-  analyzer:
+  retrofit_generator: ^7.0.8
+  injectable_generator: ^2.6.2
+  build_runner: ^2.4.6
+  analyzer: ^6.4.1
+
+  #injectable_generator: ^4.1.1
+  #retrofit_generator: ^7.0.1
+  json_serializable: ^6.7.1
+  #build_runner: ^2.4.6
+ # analyzer:
 
 
 
