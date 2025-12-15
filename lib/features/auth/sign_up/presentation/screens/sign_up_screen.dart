@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:route_e_commerce_v2/core/constants/di.dart';
+
 import '../../../../../core/resources/assets_manager.dart';
 import '../../../../../core/resources/color_manager.dart';
 import '../../../../../core/resources/notification_bar.dart';
@@ -40,8 +42,15 @@ final fomKey=GlobalKey<FormState>();
 
           }
           if(state.signUpRequestState==RequestState.loading){
-            NotificationBar.showNotification(message: "Mabrook", type: ContentType.success, context: context, icon: Icons.check);
-            Navigator.pushNamed(context, Routes.navigationRoute);
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) =>
+                  Center(
+                    child: Lottie.asset(
+                        "assets/loading.json", width: 150, height: 150),
+                  ),
+            );
           }
         },
         builder: (context, state) {

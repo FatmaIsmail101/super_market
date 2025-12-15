@@ -9,3 +9,4 @@ class GetLoginEvent extends LoginEvent{
 
   GetLoginEvent({required this.email,required this.password});
 }
+

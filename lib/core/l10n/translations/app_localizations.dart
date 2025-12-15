@@ -235,6 +235,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'For Laptops\n& Mobiles'**
   String get advertisement3;
+
+  /// No description provided for @verifyemail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Email'**
+  String get verifyemail;
+
+  /// No description provided for @forgetpassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forgetpassword;
+
+  /// No description provided for @resetcode.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Code'**
+  String get resetcode;
 }
 
 class _AppLocalizationsDelegate

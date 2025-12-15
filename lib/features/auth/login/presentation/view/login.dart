@@ -47,7 +47,15 @@ class Login extends StatelessWidget {
             Navigator.pushNamed(context, Routes.navigationRoute);
           }
           if (state.loginRequestState == RequestState.loading) {
-            Lottie.asset('assets/loading.json');
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (_) =>
+                  Center(
+                    child: Lottie.asset(
+                        "assets/loading.json", width: 150, height: 150),
+                  ),
+            );
           }
         },
         builder: (context, state) {
@@ -101,6 +109,8 @@ class Login extends StatelessWidget {
                             TextButton(
                               onPressed: () {
                                 // TODO:  Navigate to forget password
+                                Navigator.pushNamed(
+                                    context, Routes.verifyEmailRoute);
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.forgetPassword,
