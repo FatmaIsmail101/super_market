@@ -2,8 +2,6 @@
 class Assets {
   Assets._();
 
-  static const String assetsForgotPassword = 'assets/Forgot Password.json';
-  static const String assetsLoading = 'assets/loading.json';
   static const String imagesAdvertisement1 =
       'assets/images/advertisement_1.png';
   static const String imagesAdvertisement2 =
@@ -14,9 +12,6 @@ class Assets {
   static const String imagesAppLogoAndroid12 =
       'assets/images/app_logo_android12.png';
   static const String imagesAppLogoIos = 'assets/images/app_logo_ios.png';
-  static const String imagesRouteLoginLogo =
-      'assets/images/route_login_logo.png';
-  static const String routeECommerceV2AssetsLoading = 'assets/loading.json';
   static const String svgsActiveFavoriteIcon =
       'assets/svgs/active_favorite_icon.svg';
   static const String svgsCartIcon = 'assets/svgs/cart_icon.svg';
