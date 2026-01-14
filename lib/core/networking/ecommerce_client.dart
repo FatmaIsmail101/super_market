@@ -14,6 +14,7 @@ import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/mo
 import '../../features/auth/forget_password/data/models/verify_email/rest_code_request.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/brands_models/brands_response_dto.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/category_models/categories_response_dto.dart';
+import '../../features/navigation_layout/tabs/categories/data/models/product_specific_model/product_specific_model.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/sub_categories_models/sub_categories_response_dto.dart';
 import '../constants/api_constants.dart';
 
@@ -49,6 +50,9 @@ abstract class EcommerceClient {
 
   @GET(ApiConstants.getAllCategories)
   Future<CategoriesResponseDto> getCategories();
+
+  @GET("/api/v1/products/{id}")
+  Future<ProductSpecificModel> getSpacificPro(@Path("id") String id);
 }
 @module
 abstract class DioModule{

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/bloc/spacific_product/spacific_product_bloc.dart';
 
-import '../../../../core/resources/assets_manager.dart';
+import '../../../../core/constants/di.dart';
 import '../../../../core/resources/values_manager.dart';
 import '../../../../core/widgets/home_screen_app_bar.dart';
 import '../widget/custom_product_widget.dart';
@@ -10,8 +12,25 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = ModalRoute
+        .of(context)
+        ?.settings
+        .arguments as String?;
+    if (model == null) {
+      return Scaffold(
+        body: Center(child: Text("No product id provided")),
+      );
+    }
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    print("model:$model");
+    return BlocProvider(
+      create: (context) =>
+      getIt<SpacificProductBloc>()
+        ..add(SpacificProductsEvent(model)),
+      child: BlocBuilder<SpacificProductBloc, SpacificProductState>(
+        builder: (context, state) {
     return Scaffold(
       appBar: const HomeScreenAppBar(automaticallyImplyLeading: true),
       body: Padding(
@@ -29,15 +48,17 @@ class ProductsScreen extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return CustomProductWidget(
-                    image: ImageAssets.categoryHomeImage,
-                    title: "Nike Air Jordon",
-                    price: 1100,
-                    rating: 4.7,
-                    discountPercentage: 10,
+                    image: state.productSpecificModel?.images?[index] ?? "",
+                    title: state.productSpecificModel?.title?[index] ?? "",
+                    price: state.productSpecificModel?.price?.toDouble() ?? 0.0,
+                    rating: state.productSpecificModel?.ratingsAverage
+                        ?.toDouble() ?? 0.0,
+                    discountPercentage: state.productSpecificModel
+                        ?.ratingsQuantity?.toDouble() ?? 0.0,
                     height: height,
                     width: width,
                     description:
-                        "Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories",
+                    state.productSpecificModel?.description ?? "",
                   );
                 },
                 scrollDirection: Axis.vertical,
@@ -45,6 +66,9 @@ class ProductsScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+        },
       ),
     );
   }

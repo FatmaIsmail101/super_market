@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../../home/data/model/product_model.dart';
 import 'sub_category_dto.dart';
 

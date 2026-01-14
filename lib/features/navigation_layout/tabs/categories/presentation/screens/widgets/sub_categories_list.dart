@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/bloc/sign_up_bloc.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/bloc/get_all_categories_bloc.dart';
-
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/bloc/spacific_product/spacific_product_bloc.dart';
 import '../../../../../../../core/resources/color_manager.dart';
 import '../../../../../../../core/resources/font_manager.dart';
 import '../../../../../../../core/resources/style_manager.dart';
@@ -62,6 +62,8 @@ class SubCategoriesList extends StatelessWidget {
                               ?.subCategory?[index]
                               .name ??
                           "",
+                      id: state.subCategoriesResponseDto?.subCategory?[index]
+                          .id ?? "",
                       state
                               .subCategoriesResponseDto
                               ?.subCategory?[index]
@@ -87,7 +89,8 @@ class SubCategoriesList extends StatelessWidget {
     );
   }
 
-  goToCategoryProductsListScreen() {
-    // todo implement this function
+  goToCategoryProductsListScreen(BuildContext context, String id) {
+    BlocProvider.of<SpacificProductBloc>(context).add(
+        SpacificProductsEvent(id));
   }
 }

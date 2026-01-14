@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -68,27 +69,27 @@ class CustomProductWidget extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-                  // Not working with the lastest flutter version
 
-                  // CachedNetworkImage(
-                  //   imageUrl: image,
-                  //   height: height * 0.15,
-                  //   width: double.infinity,
-                  //   fit: BoxFit.cover,
-                  //   placeholder: (context, url) =>
-                  //       const Center(child: CircularProgressIndicator()),
-                  //   errorWidget: (context, url, error) => const Icon(Icons.error),
-                  // ),
-                  // Image.network(
-                  //   image,
-                  //   fit: BoxFit.cover,
-                  // ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(14.r),
-                    ),
-                    child: Image.asset(image, fit: BoxFit.cover, width: width),
+                  CachedNetworkImage(
+                    imageUrl: image,
+                    height: height * 0.15,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
                   ),
+                  Image.network(
+                    image,
+                    fit: BoxFit.cover,
+                  ),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.vertical(
+                  //     top: Radius.circular(14.r),
+                  //   ),
+                  //   child: Image.asset(image, fit: BoxFit.cover, width: width),
+                  // ),
                   Positioned(
                     top: height * 0.01,
                     right: width * 0.02,

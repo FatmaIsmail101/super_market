@@ -176,17 +176,17 @@ class _EcommerceClient implements EcommerceClient {
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-      _dio.options,
-      '/api/v1/categories',
-      queryParameters: queryParameters,
-      data: _data,
-    )
-        .copyWith(
-        baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/api/v1/categories',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = BrandsResponseDto.fromJson(_result.data!);
     return value;
   }
@@ -203,17 +203,17 @@ class _EcommerceClient implements EcommerceClient {
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-      _dio.options,
-      '/api/v1/products',
-      queryParameters: queryParameters,
-      data: _data,
-    )
-        .copyWith(
-        baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/api/v1/products',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ProductsResponse.fromJson(_result.data!);
     return value;
   }
@@ -226,18 +226,18 @@ class _EcommerceClient implements EcommerceClient {
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<SubCategoriesResponseDto>(Options(
-          method: 'GET',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          '/api/v1/categories/${catId}/subcategories',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              '/api/v1/categories/${catId}/subcategories',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(
-            baseUrl: _combineBaseUrls(
+                baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
             ))));
@@ -253,22 +253,49 @@ class _EcommerceClient implements EcommerceClient {
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CategoriesResponseDto>(Options(
-          method: 'GET',
-          headers: _headers,
-          extra: _extra,
-        )
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
             .compose(
-          _dio.options,
-          '/api/v1/categories',
-          queryParameters: queryParameters,
-          data: _data,
-        )
+              _dio.options,
+              '/api/v1/categories',
+              queryParameters: queryParameters,
+              data: _data,
+            )
             .copyWith(
-            baseUrl: _combineBaseUrls(
+                baseUrl: _combineBaseUrls(
               _dio.options.baseUrl,
               baseUrl,
             ))));
     final value = CategoriesResponseDto.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProductSpecificModel> getSpacificPro(String id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProductSpecificModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/v1/products/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ProductSpecificModel.fromJson(_result.data!);
     return value;
   }
 

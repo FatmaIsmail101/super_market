@@ -21,7 +21,7 @@ class _NavigationViewState extends State<NavigationView> {
   List<Widget> pages = [
     const HomeTabView(),
     const CategoriesTab(),
-    const FavoriteTabView(),
+    const FavouriteScreen(),
     ProfileTabView(),
   ];
 

@@ -30,8 +30,11 @@ import 'package:route_e_commerce_v2/features/auth/forget_password/domain/reposit
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeEither_0(Object parent,
+      Invocation parentInvocation,) : super(
+    parent,
+    parentInvocation,
+  );
 }
 
 /// A class which mocks [VerifyEmailRepository].
@@ -40,28 +43,32 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 class MockVerifyEmailRepository extends _i1.Mock
     implements _i3.VerifyEmailRepository {
   @override
-  _i4.Future<_i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>>
-  verifyEmail(_i7.VerifyEmailRequest? request) =>
+  _i4.Future<
+      _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>> verifyEmail(
+      _i7.VerifyEmailRequest? request) =>
       (super.noSuchMethod(
-            Invocation.method(#verifyEmail, [request]),
-            returnValue: _i4.Future<
-              _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>
-            >.value(
-              _FakeEither_0<_i5.CommerceFailure, _i6.VerifyEmailResponse>(
-                this,
-                Invocation.method(#verifyEmail, [request]),
+        Invocation.method(
+          #verifyEmail,
+          [request],
+        ),
+        returnValue: _i4.Future<
+            _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>>.value(
+            _FakeEither_0<_i5.CommerceFailure, _i6.VerifyEmailResponse>(
+              this,
+              Invocation.method(
+                #verifyEmail,
+                [request],
               ),
-            ),
-            returnValueForMissingStub: _i4.Future<
-              _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>
-            >.value(
-              _FakeEither_0<_i5.CommerceFailure, _i6.VerifyEmailResponse>(
-                this,
-                Invocation.method(#verifyEmail, [request]),
+            )),
+        returnValueForMissingStub: _i4.Future<
+            _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>>.value(
+            _FakeEither_0<_i5.CommerceFailure, _i6.VerifyEmailResponse>(
+              this,
+              Invocation.method(
+                #verifyEmail,
+                [request],
               ),
-            ),
-          )
-          as _i4.Future<
-            _i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>
-          >);
+            )),
+      ) as _i4
+          .Future<_i2.Either<_i5.CommerceFailure, _i6.VerifyEmailResponse>>);
 }
