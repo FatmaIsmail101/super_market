@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:route_e_commerce_v2/core/theme/app_colors.dart';
-import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/categories_tab_view.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/screens/categories_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/favorite_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/presentation/home_tab_view.dart';
-import 'package:route_e_commerce_v2/features/navigation_layout/tabs/profile/profile_tab_view.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/profile/presentation/screens/profile_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/widgets/home_appbar.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/widgets/home_bottom_navigation_bar_item.dart';
 
@@ -20,9 +20,9 @@ class _NavigationViewState extends State<NavigationView> {
 
   List<Widget> pages = [
     const HomeTabView(),
-    const CategoriesTabView(),
+    const CategoriesTab(),
     const FavoriteTabView(),
-    const ProfileTabView(),
+    ProfileTabView(),
   ];
 
   @override
@@ -32,7 +32,7 @@ class _NavigationViewState extends State<NavigationView> {
       builder:
           (context, value, child) => Scaffold(
             appBar: HomeAppbar(tabIndex: index.value),
-            body: pages[value],
+            body: IndexedStack(index: value, children: pages),
             bottomNavigationBar: ClipRRect(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(24),

@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/domain/entities/sub_category.dart';
 
+part 'sub_category_dto.g.dart';
+
+@JsonSerializable()
 class SubCategoryDto {
   String? id;
   String? name;
@@ -17,14 +21,8 @@ class SubCategoryDto {
     this.updatedAt,
   });
 
-  SubCategoryDto.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
-    name = json['name'];
-    slug = json['slug'];
-    category = json['category'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-  }
+  factory SubCategoryDto.fromJson(Map<String, dynamic> json) =>
+      _$SubCategoryDtoFromJson(json);
 
   SubCategory toEntity() {
     return SubCategory(

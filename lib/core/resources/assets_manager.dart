@@ -7,8 +7,8 @@ abstract class ImageAssets {
   static const String routeLogo = "$imagePath/splash_logo.png";
   static const String categoryCardImage = "$imagePath/category_card_image.png";
 
-  static const String subcategoryCardImage =
-      "$imagePath/sub_category_card_image.png";
+  // static const String subcategoryCardImage =
+  //     "$imagePath/sub_category_card_image.png";
   static const String carouselSlider1 = "$imagePath/CarouselSlider1.png";
 
   static const String categoryHomeImage = "$imagePath/category_image.jpg";
@@ -18,9 +18,11 @@ abstract class ImageAssets {
   static const String productImage = "$imagePath/product_image.png";
 
   static const String rate = "$imagePath/rate.png";
+  static const String edit = "$imagePath/edit (1) 3.png";
 
   static const String shoppingCart = "$imagePath/shopping_cart.png";
-  static const String favoriteIcon = "$imagePath/favorite.png";
+
+  //static const String favoriteIcon = "$imagePath/favorite.png";
   static const String notFavoriteIcon = "$imagePath/not_favorite.png";
   static const String searchIcon = "$imagePath/search.png";
 }

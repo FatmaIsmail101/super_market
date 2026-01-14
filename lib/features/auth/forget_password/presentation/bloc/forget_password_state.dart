@@ -42,7 +42,7 @@ class ForgetPasswordState {
       failure: failure ?? this.failure,
       verifyEmailResponse: verifyEmailResponse ?? this.verifyEmailResponse,
       verifyEmailState: verifyEmailState ?? this.verifyEmailState,
-      restCodeState: resetCodeState ?? this.restCodeState,
+      restCodeState: resetCodeState ?? restCodeState,
       resetCodeResponse: resetCodeResponse ?? this.resetCodeResponse,
     );
   }

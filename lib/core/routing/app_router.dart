@@ -8,6 +8,8 @@ import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/screens/s
 import 'package:route_e_commerce_v2/features/navigation_layout/navigation_view.dart';
 
 import '../../features/auth/login/presentation/view/login.dart';
+import '../../features/product_details/presentation/screens/product_details.dart';
+import '../../features/products/presentation/screens/product_screen.dart';
 
 abstract class AppRouter {
   static Route generateRoute(RouteSettings settings) {
@@ -28,6 +30,10 @@ abstract class AppRouter {
           settings: settings,
           builder: (_) => const NavigationView(),
         );
+      case Routes.productDetails:
+        return MaterialPageRoute(builder: (_) => const ProductDetails());
+      case Routes.productsScreenRoute:
+        return MaterialPageRoute(builder: (_) => const ProductsScreen());
       case Routes.loginRoute:
         return MaterialPageRoute(
           settings: settings,

@@ -5,4 +5,7 @@ abstract class Routes {
   static const String verifyEmailRoute = '/verifyEmailRoute';
   static const String forgetPasswordRoute = '/forgetPasswordRoute';
   static const String resetCodeRoute = '/resetCodeRoute';
+  static const String productsScreenRoute = "/products";
+  static const String productDetails = '/productDetails';
+  static const String cartRoute = "/cart";
 }

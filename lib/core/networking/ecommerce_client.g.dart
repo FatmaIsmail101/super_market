@@ -164,6 +164,114 @@ class _EcommerceClient implements EcommerceClient {
     return value;
   }
 
+  @override
+  Future<BrandsResponseDto> getAllCategories() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<BrandsResponseDto>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+      _dio.options,
+      '/api/v1/categories',
+      queryParameters: queryParameters,
+      data: _data,
+    )
+        .copyWith(
+        baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = BrandsResponseDto.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProductsResponse> getAllProducts() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProductsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+      _dio.options,
+      '/api/v1/products',
+      queryParameters: queryParameters,
+      data: _data,
+    )
+        .copyWith(
+        baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+    final value = ProductsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SubCategoriesResponseDto> getAllSubCat(String catId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SubCategoriesResponseDto>(Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          '/api/v1/categories/${catId}/subcategories',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(
+            baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SubCategoriesResponseDto.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CategoriesResponseDto> getCategories() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CategoriesResponseDto>(Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          '/api/v1/categories',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(
+            baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CategoriesResponseDto.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

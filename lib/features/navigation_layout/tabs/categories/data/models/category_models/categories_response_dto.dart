@@ -1,9 +1,9 @@
+import '../../../../home/data/model/product_model.dart';
 import 'category_dto.dart';
-import 'meta_data_dto.dart';
 
 class CategoriesResponseDto {
   int? results;
-  MetaDataDto? metadata;
+  Metadata? metadata;
   List<CategoryDto>? categories;
 
   CategoriesResponseDto({this.results, this.metadata, this.categories});
@@ -11,9 +11,7 @@ class CategoriesResponseDto {
   CategoriesResponseDto.fromJson(Map<String, dynamic> json) {
     results = json['results'];
     metadata =
-        json['metadata'] != null
-            ? MetaDataDto.fromJson(json['metadata'])
-            : null;
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['data'] != null) {
       categories = <CategoryDto>[];
       json['data'].forEach((v) {

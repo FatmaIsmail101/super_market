@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -10,7 +9,6 @@ import '../../../../../core/l10n/translations/app_localizations.dart';
 import '../../../../../core/resources/notification_bar.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/utils/validation.dart';
 import '../../../sign_up/presentation/bloc/sign_up_bloc.dart';
 import '../../../widgets/auth_textfield.dart';
 import '../bloc/forget_password_bloc.dart';

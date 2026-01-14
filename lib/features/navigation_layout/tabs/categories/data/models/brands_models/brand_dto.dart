@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/domain/entities/brand.dart';
 
+part 'brand_dto.g.dart';
+
+@JsonSerializable()
 class BrandDto {
   String? id;
   String? name;
@@ -17,14 +21,8 @@ class BrandDto {
     this.updatedAt,
   });
 
-  BrandDto.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
-    name = json['name'];
-    slug = json['slug'];
-    image = json['image'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-  }
+  factory BrandDto.fromJson(Map<String, dynamic> json) =>
+      _$BrandDtoFromJson(json);
 
   Brand toEntity() {
     return Brand(

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:route_e_commerce_v2/core/utils/app_assets.dart';
-import 'package:route_e_commerce_v2/features/products/domain/entity/product.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/model/product_model.dart';
 
 class CustomProductCard extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
   const CustomProductCard({super.key, required this.product});
 
   @override
@@ -39,70 +40,68 @@ class CustomProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        product.title ?? 'Unknown Product',
-                        style: textTheme.headlineSmall,
-                      ),
+              Padding(
+                padding: EdgeInsets.all(4.0.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.title ?? 'Unknown Product',
+                      style: textTheme.headlineSmall,
+                    ),
 
-                      Text(
-                        product.description ?? 'No description available',
-                        style: textTheme.headlineSmall,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'EGP ${product.priceAfterDiscount ?? 0} ',
-                            style: textTheme.headlineSmall,
+                    Text(
+                      product.description ?? 'No description available',
+                      style: textTheme.headlineSmall,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 8.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'EGP ${product.priceAfterDiscount ?? 0} ',
+                          style: textTheme.headlineSmall,
+                        ),
+                        Text(
+                          " ${product.price ?? 0}",
+                          style: Theme.of(
+                            context,
+                          ).textTheme.headlineSmall?.copyWith(
+                            color: colorScheme.primary.withValues(alpha: .6),
+                            decoration: TextDecoration.lineThrough,
                           ),
-                          Text(
-                            " ${product.price ?? 0}",
-                            style: Theme.of(
-                              context,
-                            ).textTheme.headlineSmall?.copyWith(
-                              color: colorScheme.primary.withValues(alpha: .6),
-                              decoration: TextDecoration.lineThrough,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          spacing: 4,
+                          children: [
+                            Text(
+                              'Review (${product.ratingsAverage?.toStringAsFixed(1) ?? 0})',
+                              style: textTheme.headlineSmall,
                             ),
+                            SvgPicture.asset(AppSvgs.ratingIcon),
+                          ],
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            // TODO: Implement add to cart functionality
+                          },
+                          style: IconButton.styleFrom(
+                            backgroundColor: colorScheme.primary,
+                            foregroundColor: colorScheme.onPrimary,
+                            visualDensity: VisualDensity.compact,
+                            shape: const CircleBorder(),
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            spacing: 4,
-                            children: [
-                              Text(
-                                'Review (${product.ratingsAverage?.toStringAsFixed(1) ?? 0})',
-                                style: textTheme.headlineSmall,
-                              ),
-                              SvgPicture.asset(AppSvgs.ratingIcon),
-                            ],
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              // TODO: Implement add to cart functionality
-                            },
-                            style: IconButton.styleFrom(
-                              backgroundColor: colorScheme.primary,
-                              foregroundColor: colorScheme.onPrimary,
-                              visualDensity: VisualDensity.compact,
-                              shape: const CircleBorder(),
-                            ),
-                            icon: const Icon(Icons.add_rounded),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          icon: const Icon(Icons.add_rounded),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],

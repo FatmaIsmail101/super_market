@@ -12,7 +12,6 @@ class HomeTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppLocalizations locale = AppLocalizations.of(context)!;
-
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
@@ -21,11 +20,11 @@ class HomeTabView extends StatelessWidget {
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
         SectionTitle(title: locale.categories, viewAllVisibility: true),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        const CategoriesList(),
+        const SliverToBoxAdapter(child: CategoriesList()),
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
         SectionTitle(title: locale.homeAppliance),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        const ProductsList(),
+        SliverToBoxAdapter(child: ProductsList()),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
       ],
     );
