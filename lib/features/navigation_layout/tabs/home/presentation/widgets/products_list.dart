@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:route_e_commerce_v2/core/routing/routes.dart';
 import 'package:route_e_commerce_v2/core/widgets/custom_product_card.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/bloc/sign_up_bloc.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/model/product_model.dart';
@@ -10,7 +11,7 @@ import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/present
 import '../../../../../../core/constants/di.dart';
 
 class ProductsList extends StatelessWidget {
-  const ProductsList({super.key});
+  const ProductsList({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +34,23 @@ class ProductsList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 16),
-                    child: CustomProductCard(
-                      product:
-                          state.productsRespons?.products?[index] ??
-                          ProductModel(),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.productDetails,
+                            arguments: state.productsRespons?.products?[index]);
+                        print("productsRespons ${state.productsRespons
+                            ?.products?[index].id ?? ""}");
+                      },
+                      child: CustomProductCard(
+                        id: state.productsRespons?.products?[index].id ?? "",
+                        onTap: (id) {
+                          context.read<GetAllProductsBloc>()
+                            ..add(AddToCartEvent(id));
+                        },
+                        product:
+                        state.productsRespons?.products?[index] ??
+                            ProductModel(),
+                      ),
                     ),
                   );
                 },

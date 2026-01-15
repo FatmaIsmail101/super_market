@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:route_e_commerce_v2/core/constants/di.dart';
 import 'package:route_e_commerce_v2/core/theme/app_colors.dart';
+import 'package:route_e_commerce_v2/features/cart/presentation/bloc/add_cart_bloc/cart_bloc.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/screens/categories_tab_view.dart';
-import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/favorite_tab_view.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/presentation/screens/favorite_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/presentation/home_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/profile/presentation/screens/profile_tab_view.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/widgets/home_appbar.dart';
@@ -30,38 +33,41 @@ class _NavigationViewState extends State<NavigationView> {
     return ValueListenableBuilder(
       valueListenable: index,
       builder:
-          (context, value, child) => Scaffold(
-            appBar: HomeAppbar(tabIndex: index.value),
-            body: IndexedStack(index: value, children: pages),
-            bottomNavigationBar: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(24),
-                topRight: Radius.circular(24),
-              ),
-              child: BottomNavigationBar(
-                backgroundColor: AppColors.blue,
-                type: BottomNavigationBarType.fixed,
-                onTap: changeSelectedIndex,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                items: [
-                  HomeBottomNavigationBarItem(
-                    icon: Iconsax.home_outline,
-                    isSelected: value == 0,
-                  ),
-                  HomeBottomNavigationBarItem(
-                    icon: Iconsax.category_outline,
-                    isSelected: value == 1,
-                  ),
-                  HomeBottomNavigationBarItem(
-                    icon: Iconsax.heart_outline,
-                    isSelected: value == 2,
-                  ),
-                  HomeBottomNavigationBarItem(
-                    icon: Iconsax.user_outline,
-                    isSelected: value == 3,
-                  ),
-                ],
+          (context, value, child) => BlocProvider(
+            create: (context) => getIt<CartBloc>()..add(GetCartEvent()),
+            child: Scaffold(
+              appBar: HomeAppbar(tabIndex: index.value),
+              body: IndexedStack(index: value, children: pages),
+              bottomNavigationBar: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24),
+                  topRight: Radius.circular(24),
+                ),
+                child: BottomNavigationBar(
+                  backgroundColor: AppColors.blue,
+                  type: BottomNavigationBarType.fixed,
+                  onTap: changeSelectedIndex,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  items: [
+                    HomeBottomNavigationBarItem(
+                      icon: Iconsax.home_outline,
+                      isSelected: value == 0,
+                    ),
+                    HomeBottomNavigationBarItem(
+                      icon: Iconsax.category_outline,
+                      isSelected: value == 1,
+                    ),
+                    HomeBottomNavigationBarItem(
+                      icon: Iconsax.heart_outline,
+                      isSelected: value == 2,
+                    ),
+                    HomeBottomNavigationBarItem(
+                      icon: Iconsax.user_outline,
+                      isSelected: value == 3,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

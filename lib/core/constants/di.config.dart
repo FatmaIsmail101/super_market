@@ -67,6 +67,14 @@ import '../../features/auth/sign_up/domain/sign_up_usecase/sign_up_usecase.dart'
     as _i232;
 import '../../features/auth/sign_up/presentation/bloc/sign_up_bloc.dart'
     as _i130;
+import '../../features/cart/data/datasource/cart_data_source.dart' as _i873;
+import '../../features/cart/data/repo/cart_repo_impl.dart' as _i234;
+import '../../features/cart/domain/repo/cart_repo.dart' as _i379;
+import '../../features/cart/domain/usecase/cart_usecase.dart' as _i632;
+import '../../features/cart/domain/usecase/get_cart_items_usecase.dart'
+    as _i1073;
+import '../../features/cart/presentation/bloc/add_cart_bloc/cart_bloc.dart'
+    as _i906;
 import '../../features/navigation_layout/tabs/categories/data/data_source/get_all_cat_ds.dart'
     as _i1014;
 import '../../features/navigation_layout/tabs/categories/data/data_source/get_all_cat_ds_impl.dart'
@@ -99,6 +107,16 @@ import '../../features/navigation_layout/tabs/categories/presentation/bloc/get_a
     as _i257;
 import '../../features/navigation_layout/tabs/categories/presentation/bloc/spacific_product/spacific_product_bloc.dart'
     as _i805;
+import '../../features/navigation_layout/tabs/favorite/data/data_source/favorite_ds.dart'
+    as _i196;
+import '../../features/navigation_layout/tabs/favorite/data/repo/favorite_repo.dart'
+    as _i711;
+import '../../features/navigation_layout/tabs/favorite/domain/repo/favorite_repo.dart'
+    as _i720;
+import '../../features/navigation_layout/tabs/favorite/domain/usecase/favorite_usecase.dart'
+    as _i697;
+import '../../features/navigation_layout/tabs/favorite/presentation/bloc/favorite_bloc.dart'
+    as _i250;
 import '../../features/navigation_layout/tabs/home/data/data_source/get_all_products_data_source.dart'
     as _i276;
 import '../../features/navigation_layout/tabs/home/data/data_source/get_all_products_data_source_impl.dart'
@@ -126,10 +144,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.provideDio());
+    gh.factory<_i196.FavoriteDs>(() => _i196.FavoriteDsImpl());
     gh.factory<_i1014.GetAllCategoriesDs>(() => _i381.GetAllCategoriesDsImpl());
     gh.factory<_i811.SignUpDS>(() => _i833.SignUpDSImpl());
     gh.factory<_i573.VerifyEmailDS>(() => _i84.VerifyEmailDSImpl());
     gh.factory<_i661.SpacificProductDs>(() => _i661.SpacificProductDsImpl());
+    gh.factory<_i720.FavoriteRepo>(
+        () => _i711.FavoriteRepoImpl(gh<_i196.FavoriteDs>()));
     gh.singleton<_i406.EcommerceClient>(
         () => dioModule.provideCommerceClient(gh<_i361.Dio>()));
     gh.factory<_i90.UpdatePasswordDs>(() => _i955.UpdatePasswordDSImpl());
@@ -138,20 +159,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i557.ResetCodeDS>(() => _i196.ResetCodeDSImpl());
     gh.factory<_i85.LoginDataSource>(() => _i592.LoginDSImpl());
     gh.factory<_i140.SubcatDs>(() => _i640.SubcatDsImpl());
+    gh.factory<_i873.CartDataSource>(() => _i873.CartDSImpl());
     gh.factory<_i70.UpdatePasswordRepository>(
         () => _i656.UpdatePasswordRepositoryImpl(gh<_i90.UpdatePasswordDs>()));
     gh.factory<_i502.GetAllCategoriesRepo>(
         () => _i355.GetAllCategoriesRepoImpl(gh<_i1014.GetAllCategoriesDs>()));
+    gh.factory<_i697.FavoriteUsecase>(
+        () => _i697.FavoriteUsecase(gh<_i720.FavoriteRepo>()));
     gh.factory<_i415.VerifyEmailRepository>(
         () => _i183.VerifyEmailRepositoryImpl(gh<_i573.VerifyEmailDS>()));
     gh.factory<_i988.SignUpRepository>(
         () => _i826.SignUpRepositoryImpl(gh<_i811.SignUpDS>()));
     gh.factory<_i347.LoginRepository>(
         () => _i580.LoginRepositroyImpl(gh<_i85.LoginDataSource>()));
+    gh.factory<_i379.CartRepo>(
+        () => _i234.CartRepoImpl(gh<_i873.CartDataSource>()));
     gh.factory<_i691.GetAllProductsRepo>(() =>
         _i1056.GetAllProductsRepoImpl(gh<_i276.GetAllProductsDataSource>()));
     gh.factory<_i725.UpdatePasswordUsecase>(
         () => _i725.UpdatePasswordUsecase(gh<_i70.UpdatePasswordRepository>()));
+    gh.factory<_i250.FavoriteBloc>(
+        () => _i250.FavoriteBloc(gh<_i697.FavoriteUsecase>()));
     gh.factory<_i801.GetProductRepo>(
         () => _i29.GetSpacificProductRepo(gh<_i661.SpacificProductDs>()));
     gh.factory<_i105.VerifyEmailUsecas>(
@@ -168,12 +196,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i500.GetAllCategoriesUsecase(gh<_i502.GetAllCategoriesRepo>()));
     gh.factory<_i120.GetAllProductsUsecase>(
         () => _i120.GetAllProductsUsecase(gh<_i691.GetAllProductsRepo>()));
+    gh.factory<_i632.CartUsecase>(
+        () => _i632.CartUsecase(gh<_i379.CartRepo>()));
+    gh.factory<_i1073.GetCartItemsUsecase>(
+        () => _i1073.GetCartItemsUsecase(gh<_i379.CartRepo>()));
     gh.factory<_i351.SpacificProductUsecase>(
         () => _i351.SpacificProductUsecase(gh<_i801.GetProductRepo>()));
     gh.factory<_i805.SpacificProductBloc>(
         () => _i805.SpacificProductBloc(gh<_i351.SpacificProductUsecase>()));
-    gh.factory<_i118.GetAllProductsBloc>(
-        () => _i118.GetAllProductsBloc(gh<_i120.GetAllProductsUsecase>()));
+    gh.factory<_i118.GetAllProductsBloc>(() => _i118.GetAllProductsBloc(
+          gh<_i120.GetAllProductsUsecase>(),
+          gh<_i632.CartUsecase>(),
+        ));
     gh.factory<_i885.LoginBloc>(() => _i885.LoginBloc(gh<_i44.LoginUseCase>()));
     gh.factory<_i130.SignUpBloc>(
         () => _i130.SignUpBloc(gh<_i232.SignUpUseCase>()));
@@ -184,6 +218,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i257.GetAllCategoriesBloc>(() => _i257.GetAllCategoriesBloc(
           gh<_i500.GetAllCategoriesUsecase>(),
           gh<_i391.SubcatUsecase>(),
+        ));
+    gh.factory<_i906.CartBloc>(() => _i906.CartBloc(
+          gh<_i632.CartUsecase>(),
+          gh<_i1073.GetCartItemsUsecase>(),
         ));
     gh.factory<_i1028.ForgetPasswordBloc>(() => _i1028.ForgetPasswordBloc(
           gh<_i105.VerifyEmailUsecas>(),

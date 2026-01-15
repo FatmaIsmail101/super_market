@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/presentation/bloc/favorite_bloc.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/presentation/bloc/get_all_products_bloc.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
@@ -16,7 +19,7 @@ class CustomProductWidget extends StatelessWidget {
   final double price;
   final double discountPercentage;
   final double rating;
-
+  final String id;
   const CustomProductWidget({
     super.key,
     required this.width,
@@ -27,6 +30,7 @@ class CustomProductWidget extends StatelessWidget {
     required this.price,
     required this.discountPercentage,
     required this.rating,
+    required this.id
   });
 
   String truncateTitle(String title) {
@@ -53,7 +57,9 @@ class CustomProductWidget extends StatelessWidget {
       onTap: () => Navigator.pushNamed(context, Routes.productDetails),
       child: Container(
         width: width * 0.4,
-        height: height * 0.3,
+        // height: 400.h,
+        // height * 0.2
+        //,
         decoration: BoxDecoration(
           border: Border.all(
             color: ColorManager.primary.withOpacity(0.3),
@@ -69,7 +75,6 @@ class CustomProductWidget extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
-
                   CachedNetworkImage(
                     imageUrl: image,
                     height: height * 0.15,
@@ -80,10 +85,10 @@ class CustomProductWidget extends StatelessWidget {
                     errorWidget: (context, url, error) =>
                     const Icon(Icons.error),
                   ),
-                  Image.network(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
+                  // Image.network(
+                  //   image,
+                  //   fit: BoxFit.cover,
+                  // ),
                   // ClipRRect(
                   //   borderRadius: BorderRadius.vertical(
                   //     top: Radius.circular(14.r),
@@ -93,7 +98,10 @@ class CustomProductWidget extends StatelessWidget {
                   Positioned(
                     top: height * 0.01,
                     right: width * 0.02,
-                    child: HeartButton(onTap: () {}),
+                    child: HeartButton(onTap: () {
+                      BlocProvider.of<FavoriteBloc>(context).add(
+                          AddFavoriteEvent(id));
+                    }),
                   ),
                 ],
               ),
@@ -167,7 +175,10 @@ class CustomProductWidget extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              context.read<GetAllProductsBloc>()
+                                ..add(AddToCartEvent(id));
+                            },
                             child: Container(
                               height: height * 0.036,
                               width: width * 0.08,

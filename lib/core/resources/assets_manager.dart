@@ -25,6 +25,9 @@ abstract class ImageAssets {
   //static const String favoriteIcon = "$imagePath/favorite.png";
   static const String notFavoriteIcon = "$imagePath/not_favorite.png";
   static const String searchIcon = "$imagePath/search.png";
+  static const String heartIcon = "assets/images/heart.png";
+  static const String clickedHeartIcon = "assets/images/Group 17.png";
+  static const String appLogo = "assets/images/Group 5.png";
 }
 
 class SvgAssets{

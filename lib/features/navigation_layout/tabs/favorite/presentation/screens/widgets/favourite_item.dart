@@ -2,18 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/resources/color_manager.dart';
-import '../../../../../core/resources/constants_manager.dart';
-import '../../../../../core/resources/values_manager.dart';
-import '../../../../../core/routing/routes.dart';
-import '../../../../../core/widgets/heart_button.dart';
+import '../../../../../../../core/resources/color_manager.dart';
+import '../../../../../../../core/resources/constants_manager.dart';
+import '../../../../../../../core/resources/values_manager.dart';
+import '../../../../../../../core/routing/routes.dart';
+import '../../../../../../../core/widgets/heart_button.dart';
+import '../../../data/model/get_favorite_response.dart';
 import 'add_to_cart_button.dart';
 import 'favourite_item_details.dart';
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({super.key, required this.product});
 
-  final Map<String, dynamic> product;
+  final FavoriteProduct product;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class FavoriteItem extends StatelessWidget {
                   width: AppSize.s120.w,
                   height: AppSize.s135.h,
                   fit: BoxFit.cover,
-                  imageUrl: product["imageUrl"],
+                  imageUrl: product.images?.first ?? "",
                   placeholder:
                       (context, url) => Center(
                         child: CircularProgressIndicator(

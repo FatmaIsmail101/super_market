@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:route_e_commerce_v2/core/routing/routes.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/bloc/sign_up_bloc.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/bloc/get_all_categories_bloc.dart';
-import 'package:route_e_commerce_v2/features/navigation_layout/tabs/categories/presentation/bloc/spacific_product/spacific_product_bloc.dart';
+
 import '../../../../../../../core/resources/color_manager.dart';
 import '../../../../../../../core/resources/font_manager.dart';
 import '../../../../../../../core/resources/style_manager.dart';
@@ -11,7 +12,7 @@ import 'category_card_item.dart';
 import 'sub_category_item.dart';
 
 class SubCategoriesList extends StatelessWidget {
-  const SubCategoriesList({super.key});
+  SubCategoriesList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +63,14 @@ class SubCategoriesList extends StatelessWidget {
                               ?.subCategory?[index]
                               .name ??
                           "",
-                      id: state.subCategoriesResponseDto?.subCategory?[index]
-                          .id ?? "",
+                      // id: state.subCategoriesResponseDto?.subCategory?[index]
+                      //.id ?? "",
                       state
                               .subCategoriesResponseDto
                               ?.subCategory?[index]
                               .slug ??
                           "",
-                      goToCategoryProductsListScreen,
+                      //   goToCategoryProductsListScreen,
                     ),
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -83,14 +84,21 @@ class SubCategoriesList extends StatelessWidget {
             ),
           );
         }
-        return Text("data");
+        return const Text("data");
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+        print("SubCategory id from API: ${state.subCategoriesResponseDto
+            ?.subCategory?[0].id}");
+
+      },
     );
   }
 
-  goToCategoryProductsListScreen(BuildContext context, String id) {
-    BlocProvider.of<SpacificProductBloc>(context).add(
-        SpacificProductsEvent(id));
+  goToCategoryProductsListScreen(BuildContext context,
+      //  String id
+      ) {
+    // BlocProvider.of<SpacificProductBloc>(context).add(
+    //     SpacificProductsEvent(id));
+    Navigator.pushNamed(context, Routes.productsScreenRoute);
   }
 }

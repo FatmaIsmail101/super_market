@@ -12,12 +12,16 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
+import '../../../navigation_layout/tabs/home/data/model/product_model.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  ProductDetails({super.key, required this.productModel});
 
+  late final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
+    productModel = ModalRoute.of(context)!.settings.arguments as ProductModel;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -9,9 +9,14 @@ import 'package:route_e_commerce_v2/features/auth/forget_password/data/models/ve
 import 'package:route_e_commerce_v2/features/auth/login/data/models/login_request.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/data/models/auth_response.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/data/models/sign_up_request.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/data/model/favorite_response.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/data/model/get_favorite_response.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/model/product_response.dart';
 
 import '../../features/auth/forget_password/data/models/verify_email/rest_code_request.dart';
+import '../../features/cart/data/model/add_to_cart_request.dart';
+import '../../features/cart/data/model/cart_response.dart';
+import '../../features/cart/data/model/get_cart_response.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/brands_models/brands_response_dto.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/category_models/categories_response_dto.dart';
 import '../../features/navigation_layout/tabs/categories/data/models/product_specific_model/product_specific_model.dart';
@@ -53,6 +58,21 @@ abstract class EcommerceClient {
 
   @GET("/api/v1/products/{id}")
   Future<ProductSpecificModel> getSpacificPro(@Path("id") String id);
+
+  @POST(ApiConstants.cart)
+  Future<CartResponse> addToCart(@Body() AddToCartRequest productId,
+      @Header("token") String token);
+
+  @GET(ApiConstants.cart)
+  Future<GetCartResponse> getCart(@Header("token") String token);
+
+  @POST(ApiConstants.addProductToWishlist)
+  Future<FavoriteResponse> addFavorite(@Header("token") String token,
+      AddToCartRequest request);
+
+  @GET(ApiConstants.addProductToWishlist)
+  Future<GetFavoriteResponse> getFavorite(@Header("token") String token);
+
 }
 @module
 abstract class DioModule{

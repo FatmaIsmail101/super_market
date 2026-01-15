@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final res = CacheHelper.getString("token");
-
+    print("token $res");
     return MaterialApp(
       title: "Route E-Commerce",
       themeMode: ThemeMode.light,

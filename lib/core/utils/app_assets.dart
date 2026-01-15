@@ -5,6 +5,7 @@ abstract class AppImages {
   static const String advertisement3 = '${_basePath}advertisement_3.png';
   static const String logo = 'assets/images/route_login_logo.png';
   static const String editIcon = '${_basePath}edit (1) 3.png';
+  static const String appLogo = "assets/images/Group 5.png";
 }
 
 abstract class AppSvgs {

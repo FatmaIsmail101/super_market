@@ -3,6 +3,9 @@ include: package:flutter_lints/flutter.yaml
 
 # Customize analyzer settings
 analyzer:
+  plugins:
+    - some_plugin
+    #- another_plugin
   # Enable strict type checks (optional, recommended for robustness)
   strong-mode:
     implicit-casts: false

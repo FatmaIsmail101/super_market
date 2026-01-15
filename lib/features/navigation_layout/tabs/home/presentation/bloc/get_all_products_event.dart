@@ -8,3 +8,13 @@ class GetAllProEvent extends GetAllProductsEvent {
   @override
   List<Object?> get props => [];
 }
+
+class AddToCartEvent extends GetAllProductsEvent {
+  String id;
+
+  AddToCartEvent(this.id);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id];
+}

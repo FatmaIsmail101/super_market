@@ -24,7 +24,7 @@ class HomeTabView extends StatelessWidget {
         const SliverToBoxAdapter(child: SizedBox(height: 32)),
         SectionTitle(title: locale.homeAppliance),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        SliverToBoxAdapter(child: ProductsList()),
+        const SliverToBoxAdapter(child: ProductsList()),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
       ],
     );

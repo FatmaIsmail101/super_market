@@ -12,7 +12,7 @@ part 'spacific_product_state.dart';
 @injectable
 class SpacificProductBloc
     extends Bloc<SpacificProductEvent, SpacificProductState> {
-  SpacificProductUsecase _spacificProductUsecase;
+  final SpacificProductUsecase _spacificProductUsecase;
 
   SpacificProductBloc(this._spacificProductUsecase)
     : super(SpacificProductState.init()) {

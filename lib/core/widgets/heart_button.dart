@@ -13,7 +13,7 @@ class HeartButton extends StatefulWidget {
 }
 
 class _HeartButtonState extends State<HeartButton> {
-  String heartIcon = IconsAssets.icHeart;
+  String heartIcon = ImageAssets.heartIcon;
   bool isClicked = false;
 
   @override
@@ -27,7 +27,7 @@ class _HeartButtonState extends State<HeartButton> {
         setState(() {
           isClicked = !isClicked;
           heartIcon =
-              !isClicked ? IconsAssets.icHeart : IconsAssets.icClickedHeart;
+              !isClicked ? ImageAssets.clickedHeartIcon : ImageAssets.heartIcon;
           widget.onTap?.call();
         });
       },
@@ -39,7 +39,7 @@ class _HeartButtonState extends State<HeartButton> {
         shadowColor: ColorManager.black,
         child: Padding(
           padding: const EdgeInsets.all(6),
-          child: ImageIcon(AssetImage(heartIcon), color: ColorManager.primary),
+          child: Image.asset(heartIcon),
         ),
       ),
     );
