@@ -7,7 +7,7 @@ import '../../../../core/error_handling/error_handling.dart';
 
 @injectable
 class GetCartItemsUsecase {
-  CartRepo _cartRepo;
+  final CartRepo _cartRepo;
 
   GetCartItemsUsecase(this._cartRepo);
 

@@ -8,7 +8,7 @@ import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/dom
 
 @injectable
 class FavoriteUsecase {
-  FavoriteRepo _favoriteRepo;
+  final FavoriteRepo _favoriteRepo;
 
   FavoriteUsecase(this._favoriteRepo);
 

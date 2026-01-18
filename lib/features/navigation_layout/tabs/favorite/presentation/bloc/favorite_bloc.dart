@@ -13,7 +13,7 @@ part 'favorite_state.dart';
 
 @injectable
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
-  FavoriteUsecase _favoriteUsecase;
+  final FavoriteUsecase _favoriteUsecase;
 
   FavoriteBloc(this._favoriteUsecase) : super(FavoriteState.init()) {
     on<FavoriteEvent>((event, emit) async {

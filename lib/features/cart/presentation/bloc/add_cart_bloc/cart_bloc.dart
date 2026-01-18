@@ -14,8 +14,8 @@ part 'cart_state.dart';
 
 @injectable
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartUsecase _cartUsecase;
-  GetCartItemsUsecase _getCartItemsUsecase;
+  final CartUsecase _cartUsecase;
+  final GetCartItemsUsecase _getCartItemsUsecase;
 
   CartBloc(this._cartUsecase, this._getCartItemsUsecase)
     : super(CartState.init()) {

@@ -11,7 +11,7 @@ import '../../domain/repo/favorite_repo.dart';
 
 @Injectable(as: FavoriteRepo)
 class FavoriteRepoImpl implements FavoriteRepo {
-  FavoriteDs _favoriteDs;
+  final FavoriteDs _favoriteDs;
 
   FavoriteRepoImpl(this._favoriteDs);
 

@@ -7,7 +7,9 @@ part 'get_cart_response.g.dart';
 
 @JsonSerializable()
 class GetCartResponse extends CartEntity {
+  @override
   final String? status;
+  @override
   final int? numOfCartItems;
   final String? cartId;
   final CartData? data;

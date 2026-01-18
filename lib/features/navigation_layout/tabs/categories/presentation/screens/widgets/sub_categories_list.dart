@@ -12,7 +12,7 @@ import 'category_card_item.dart';
 import 'sub_category_item.dart';
 
 class SubCategoriesList extends StatelessWidget {
-  SubCategoriesList({super.key});
+  const SubCategoriesList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class SubCategoriesList extends StatelessWidget {
     );
   }
 
-  goToCategoryProductsListScreen(BuildContext context,
+   goToCategoryProductsListScreen(BuildContext context,
       //  String id
       ) {
     // BlocProvider.of<SpacificProductBloc>(context).add(

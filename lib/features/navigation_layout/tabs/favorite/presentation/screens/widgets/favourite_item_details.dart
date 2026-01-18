@@ -31,7 +31,7 @@ class FavouriteItemDetails extends StatelessWidget {
               margin: EdgeInsets.only(right: AppSize.s10.w),
               // width: AppSize.s14.w,
               height: AppSize.s14.h,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blueAccent,
                 shape: BoxShape.circle,
               ),

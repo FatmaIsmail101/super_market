@@ -7,7 +7,7 @@ import 'package:route_e_commerce_v2/features/cart/domain/repo/cart_repo.dart';
 
 @injectable
 class CartUsecase {
-  CartRepo _cartRepo;
+  final CartRepo _cartRepo;
 
   CartUsecase(this._cartRepo);
 

@@ -75,7 +75,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
   }
 
   // callback function to change the selected index
-  onItemClick(int index, id) {
+    onItemClick(int index, id) {
     BlocProvider.of<GetAllCategoriesBloc>(context).add(GetSubCatEvent(id));
 
     setState(() {

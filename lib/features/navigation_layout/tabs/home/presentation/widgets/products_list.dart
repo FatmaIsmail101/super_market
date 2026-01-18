@@ -45,7 +45,7 @@ class ProductsList extends StatelessWidget {
                         id: state.productsRespons?.products?[index].id ?? "",
                         onTap: (id) {
                           context.read<GetAllProductsBloc>()
-                            ..add(AddToCartEvent(id));
+                            .add(AddToCartEvent(id));
                         },
                         product:
                         state.productsRespons?.products?[index] ??

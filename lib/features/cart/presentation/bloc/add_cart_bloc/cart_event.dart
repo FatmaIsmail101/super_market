@@ -5,9 +5,9 @@ sealed class CartEvent extends Equatable {
 }
 
 class AddToCartEvent extends CartEvent {
-  AddToCartRequest _addToCartRequest;
+  final AddToCartRequest _addToCartRequest;
 
-  AddToCartEvent(this._addToCartRequest);
+  const AddToCartEvent(this._addToCartRequest);
 
   @override
   // TODO: implement props

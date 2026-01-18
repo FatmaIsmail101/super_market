@@ -189,7 +189,7 @@ class CustomProductWidget extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               context.read<GetAllProductsBloc>()
-                                ..add(AddToCartEvent(id));
+                                .add(AddToCartEvent(id));
                             },
                             child: Container(
                               height: height * 0.036,

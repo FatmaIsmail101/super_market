@@ -34,7 +34,7 @@ abstract class AppRouter {
       // final args = settings.arguments as Map<String, dynamic>?; // جرب الـ? عشان لو null
         return MaterialPageRoute(
           builder: (_) =>
-              ProductDetails(
+              const ProductDetails(
                 // id: args?['_id'],
                 // title: args?['title'],
                 // image: args?['image'],
