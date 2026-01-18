@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/presentation/bloc/get_all_products_bloc.dart';
+import 'package:route_e_commerce_v2/features/product_details/presentation/screens/product_details.dart';
 
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
-import '../../../../core/routing/routes.dart';
 import '../../../../core/widgets/heart_button.dart';
 
 class CustomProductWidget extends StatelessWidget {
@@ -54,7 +54,15 @@ class CustomProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, Routes.productDetails),
+      onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (_) =>
+              ProductDetails(
+                title: title,
+                image: image,
+                description: description,
+                price: price,
+                rating: rating,
+              ),)),
       child: Container(
         width: width * 0.4,
         // height: 400.h,
@@ -98,10 +106,14 @@ class CustomProductWidget extends StatelessWidget {
                   Positioned(
                     top: height * 0.01,
                     right: width * 0.02,
-                    child: HeartButton(onTap: () {
-                      BlocProvider.of<FavoriteBloc>(context).add(
-                          AddFavoriteEvent(id));
-                    }),
+                    child: Builder(
+
+                      builder: (context) =>
+                          HeartButton(onTap: () {
+                            BlocProvider.of<FavoriteBloc>(context).add(
+                                AddFavoriteEvent(id));
+                          }),
+                    ),
                   ),
                 ],
               ),

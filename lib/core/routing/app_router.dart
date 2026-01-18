@@ -6,7 +6,6 @@ import 'package:route_e_commerce_v2/features/auth/forget_password/presentation/s
 import 'package:route_e_commerce_v2/features/auth/forget_password/presentation/screens/verify_email.dart';
 import 'package:route_e_commerce_v2/features/auth/sign_up/presentation/screens/sign_up_screen.dart';
 import 'package:route_e_commerce_v2/features/navigation_layout/navigation_view.dart';
-import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/model/product_model.dart';
 
 import '../../features/auth/login/presentation/view/login.dart';
 import '../../features/product_details/presentation/screens/product_details.dart';
@@ -32,11 +31,13 @@ abstract class AppRouter {
           builder: (_) => const NavigationView(),
         );
       case Routes.productDetails:
+      // final args = settings.arguments as Map<String, dynamic>?; // جرب الـ? عشان لو null
         return MaterialPageRoute(
-          builder:
-              (_) =>
+          builder: (_) =>
               ProductDetails(
-                productModel: ProductModel(id: "6428ebc6dc1175abc65ca0b9"),
+                // id: args?['_id'],
+                // title: args?['title'],
+                // image: args?['image'],
               ),
         );
       case Routes.productsScreenRoute:

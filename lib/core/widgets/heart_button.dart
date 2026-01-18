@@ -18,25 +18,29 @@ class _HeartButtonState extends State<HeartButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      // radius: 25,
-      customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      onTap: () {
-        setState(() {
-          isClicked = !isClicked;
-          heartIcon =
-              !isClicked ? ImageAssets.clickedHeartIcon : ImageAssets.heartIcon;
-          widget.onTap?.call();
-        });
-      },
-      child: Material(
-        // borderRadius: BorderRadius.circular(2),
-        color: ColorManager.white,
-        elevation: 5,
-        shape: const StadiumBorder(),
-        shadowColor: ColorManager.black,
+    return Material(
+      color: ColorManager.white,
+      elevation: 5,
+      shape: const StadiumBorder(),
+      shadowColor: ColorManager.black,
+      child: InkWell(
+        customBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        onTap: () {
+          setState(() {
+            isClicked = !isClicked;
+            // heartIcon =
+            //     !isClicked ? ImageAssets.clickedHeartIcon : ImageAssets.heartIcon;
+            //
+            heartIcon =
+                isClicked
+                    ? ImageAssets.clickedHeartIcon
+                    : ImageAssets.heartIcon;
+
+            widget.onTap?.call();
+          });
+        },
         child: Padding(
           padding: const EdgeInsets.all(6),
           child: Image.asset(heartIcon),

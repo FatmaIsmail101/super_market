@@ -13,130 +13,139 @@ class CustomProductCard extends StatelessWidget {
   Function onTap;
   String id;
 
-  CustomProductCard({super.key, required this.product, required this.onTap,
-    required this.id});
+  CustomProductCard({
+    super.key,
+    required this.product,
+    required this.onTap,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: colorScheme.primary.withValues(alpha: .3),
-          width: 2,
+    return BlocProvider(
+      create: (context) => getIt<FavoriteBloc>(),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: colorScheme.primary.withValues(alpha: .3),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(16),
         ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                    product.imageCover ?? "",
-                    //  'https://ecommerce.routemisr.com/Route-Academy-products/1678303324588-cover.jpeg',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: product.imageCover ?? "",
+                      //  'https://ecommerce.routemisr.com/Route-Academy-products/1678303324588-cover.jpeg',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(4.0.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.title ?? 'Unknown Product',
-                      style: textTheme.headlineSmall,
-                    ),
+                Padding(
+                  padding: EdgeInsets.all(4.0.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.title ?? 'Unknown Product',
+                        style: textTheme.headlineSmall,
+                      ),
 
-                    Text(
-                      product.description ?? 'No description available',
-                      style: textTheme.headlineSmall,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 8.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'EGP ${product.priceAfterDiscount ?? 0} ',
-                          style: textTheme.headlineSmall,
-                        ),
-                        Text(
-                          " ${product.price ?? 0}",
-                          style: Theme.of(
-                            context,
-                          ).textTheme.headlineSmall?.copyWith(
-                            color: colorScheme.primary.withValues(alpha: .6),
-                            decoration: TextDecoration.lineThrough,
+                      Text(
+                        product.description ?? 'No description available',
+                        style: textTheme.headlineSmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 8.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'EGP ${product.priceAfterDiscount ?? 0} ',
+                            style: textTheme.headlineSmall,
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          spacing: 4,
-                          children: [
-                            Text(
-                              'Review (${product.ratingsAverage?.toStringAsFixed(1) ?? 0})',
-                              style: textTheme.headlineSmall,
+                          Text(
+                            " ${product.price ?? 0}",
+                            style: Theme.of(
+                              context,
+                            ).textTheme.headlineSmall?.copyWith(
+                              color: colorScheme.primary.withValues(alpha: .6),
+                              decoration: TextDecoration.lineThrough,
                             ),
-                            SvgPicture.asset(
-                                AppSvgs.ratingIcon),
-                          ],
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            onTap(id);
-                            //context.read<CartBloc>().add(AddToCartEvent(AddToCartRequest(productId: product.id)));
-                          },
-                          style: IconButton.styleFrom(
-                            backgroundColor: colorScheme.primary,
-                            foregroundColor: colorScheme.onPrimary,
-                            visualDensity: VisualDensity.compact,
-                            shape: const CircleBorder(),
                           ),
-                          icon: const Icon(Icons.add_rounded),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          BlocProvider(
-            create: (context) => getIt<FavoriteBloc>(),
-            child: Positioned(
-              top: 8,
-              right: 8,
-              child: InkWell(
-                onTap: () {
-                  print(id);
-                  BlocProvider.of<FavoriteBloc>(context).add(
-                      AddFavoriteEvent(id));
-                },
-                child: CircleAvatar(
-                  backgroundColor: colorScheme.onPrimary,
-                  child: SvgPicture.asset(
-                    AppSvgs.inactiveFavoriteIcon,
-                    fit: BoxFit.scaleDown,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            spacing: 4,
+                            children: [
+                              Text(
+                                'Review (${product.ratingsAverage?.toStringAsFixed(1) ?? 0})',
+                                style: textTheme.headlineSmall,
+                              ),
+                              SvgPicture.asset(AppSvgs.ratingIcon),
+                            ],
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              onTap(id);
+                              //context.read<CartBloc>().add(AddToCartEvent(AddToCartRequest(productId: product.id)));
+                            },
+                            style: IconButton.styleFrom(
+                              backgroundColor: colorScheme.primary,
+                              foregroundColor: colorScheme.onPrimary,
+                              visualDensity: VisualDensity.compact,
+                              shape: const CircleBorder(),
+                            ),
+                            icon: const Icon(Icons.add_rounded),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
+            Builder(
+              builder:
+                  (context) => Positioned(
+                    top: 8,
+                    right: 8,
+                    child: InkWell(
+                      onTap: () {
+                        print(id);
+                        print("Sent id = $id");
+                        print("Actual product id = ${product.id}");
+
+                        BlocProvider.of<FavoriteBloc>(
+                          context,
+                        ).add(AddFavoriteEvent(id));
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: colorScheme.onPrimary,
+                        child: SvgPicture.asset(
+                          AppSvgs.inactiveFavoriteIcon,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ),
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }

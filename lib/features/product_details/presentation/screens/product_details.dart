@@ -12,21 +12,30 @@ import '../../../../core/resources/assets_manager.dart';
 import '../../../../core/resources/color_manager.dart';
 import '../../../../core/resources/style_manager.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
-import '../../../navigation_layout/tabs/home/data/model/product_model.dart';
 
 class ProductDetails extends StatelessWidget {
-  ProductDetails({super.key, required this.productModel});
+  final String? title;
+  final double? rating;
+  final String? description;
+  final String? image;
+  final double? price;
 
-  late final ProductModel productModel;
+  const ProductDetails({
+    super.key,
+    this.title,
+    this.image,
+    this.description,
+    this.price, this.rating
+  });
+
+  //late final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
-    productModel = ModalRoute.of(context)!.settings.arguments as ProductModel;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Product Details',
+          title ?? "",
           style: getMediumStyle(
             color: ColorManager.appBarTitleColor,
           ).copyWith(fontSize: 20.sp),
@@ -72,19 +81,20 @@ class ProductDetails extends StatelessWidget {
                 initialIndex: 0,
               ),
               SizedBox(height: 24.h),
-              const ProductLabel(
-                productName: 'Nike Air Jordon',
-                productPrice: 'EGP 3,500',
+              ProductLabel(
+                productName: title ?? "",
+                productPrice: 'EGP $price',
               ),
-              SizedBox(height: 16.h),
-              const ProductRating(
+              SizedBox(height: 12.h),
+              ProductRating(
                 productBuyers: '3,230',
-                productRating: '4.8 (7,500)',
+                productRating: '$rating (7,500)',
               ),
               SizedBox(height: 16.h),
-              const ProductDescription(
+              ProductDescription(
                 productDescription:
-                    'Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories',
+                description ?? ""
+                //'Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories',
               ),
               ProductSize(size: const [35, 38, 39, 40], onSelected: () {}),
               SizedBox(height: 20.h),

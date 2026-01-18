@@ -67,7 +67,9 @@ abstract class EcommerceClient {
   Future<GetCartResponse> getCart(@Header("token") String token);
 
   @POST(ApiConstants.addProductToWishlist)
-  Future<FavoriteResponse> addFavorite(@Header("token") String token,
+  Future<FavoriteResponse> addFavorite(@Header("Authorization")
+  //@Header("token")
+  String token,
       AddToCartRequest request);
 
   @GET(ApiConstants.addProductToWishlist)
