@@ -4,11 +4,13 @@ part of 'sign_up_bloc.dart';
 sealed class SignUpEvent {}
 
 class GetSignUpEvent extends SignUpEvent{
- String name;
- String rePassword;
- String phone;
- String email;
- String password;
+  String? name;
+  String? rePassword;
+  String? phone;
+  String? email;
+  String? password;
 
- GetSignUpEvent({required this.name,required this.phone,required this.email,required this.rePassword,required this.password});
+  GetSignUpEvent({ this.name
+    , this.phone, this.email,
+    this.rePassword, this.password});
 }

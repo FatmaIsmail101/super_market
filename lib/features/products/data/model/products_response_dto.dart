@@ -1,4 +1,4 @@
-import 'metadata_dto.dart';
+import '../../../navigation_layout/tabs/categories/data/models/brands_models/metadata_dto.dart';
 import 'products_dto.dart';
 
 class ProductsResponseDto {

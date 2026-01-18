@@ -13,8 +13,8 @@ VerifyEmailResponse _$VerifyEmailResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$VerifyEmailResponseToJson(
-  VerifyEmailResponse instance,
-) => <String, dynamic>{
-  'statusMsg': instance.statusMsg,
-  'message': instance.message,
-};
+        VerifyEmailResponse instance) =>
+    <String, dynamic>{
+      'statusMsg': instance.statusMsg,
+      'message': instance.message,
+    };

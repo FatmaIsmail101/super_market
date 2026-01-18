@@ -1,47 +1,59 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:route_e_commerce_v2/core/constants/di.dart';
 import 'package:route_e_commerce_v2/core/utils/app_assets.dart';
-import 'package:route_e_commerce_v2/features/products/domain/entity/product.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/favorite/presentation/bloc/favorite_bloc.dart';
+import 'package:route_e_commerce_v2/features/navigation_layout/tabs/home/data/model/product_model.dart';
 
 class CustomProductCard extends StatelessWidget {
-  final Product product;
-  const CustomProductCard({super.key, required this.product});
+  final ProductModel product;
+  Function onTap;
+  String id;
+
+  CustomProductCard({
+    super.key,
+    required this.product,
+    required this.onTap,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: colorScheme.primary.withValues(alpha: .3),
-          width: 2,
+    return BlocProvider(
+      create: (context) => getIt<FavoriteBloc>(),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: colorScheme.primary.withValues(alpha: .3),
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(16),
         ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        product.imageCover ??
-                        'https://ecommerce.routemisr.com/Route-Academy-products/1678303324588-cover.jpeg',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: product.imageCover ?? "",
+                      //  'https://ecommerce.routemisr.com/Route-Academy-products/1678303324588-cover.jpeg',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                Padding(
+                  padding: EdgeInsets.all(4.0.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -55,7 +67,7 @@ class CustomProductCard extends StatelessWidget {
                         style: textTheme.headlineSmall,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -89,7 +101,8 @@ class CustomProductCard extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              // TODO: Implement add to cart functionality
+                              onTap(id);
+                              //context.read<CartBloc>().add(AddToCartEvent(AddToCartRequest(productId: product.id)));
                             },
                             style: IconButton.styleFrom(
                               backgroundColor: colorScheme.primary,
@@ -104,26 +117,35 @@ class CustomProductCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            top: 8,
-            right: 8,
-            child: InkWell(
-              onTap: () {
-                //TODO: Implement favorite toggle functionality
-              },
-              child: CircleAvatar(
-                backgroundColor: colorScheme.onPrimary,
-                child: SvgPicture.asset(
-                  AppSvgs.inactiveFavoriteIcon,
-                  fit: BoxFit.scaleDown,
-                ),
-              ),
+              ],
             ),
-          ),
-        ],
+            Builder(
+              builder:
+                  (context) => Positioned(
+                    top: 8,
+                    right: 8,
+                    child: InkWell(
+                      onTap: () {
+                        print(id);
+                        print("Sent id = $id");
+                        print("Actual product id = ${product.id}");
+
+                        BlocProvider.of<FavoriteBloc>(
+                          context,
+                        ).add(AddFavoriteEvent(id));
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: colorScheme.onPrimary,
+                        child: SvgPicture.asset(
+                          AppSvgs.inactiveFavoriteIcon,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ),
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }
